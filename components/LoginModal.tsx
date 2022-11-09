@@ -51,11 +51,9 @@ export function LoginModal() {
                     <XMarkIcon color="#2563EB" height={40} width={40} />
                   </div>
                   {!session ? (
-                    <Auth
-                      supabaseClient={supabase}
-                      appearance={{ theme: ThemeSupa }}
-                      theme="dark"
-                    />
+                    <div>
+                      <p>Supabase wyd!</p>
+                    </div>
                   ) : (
                     <p>Account page will go here.</p>
                   )}
