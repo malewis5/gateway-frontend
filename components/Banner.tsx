@@ -24,7 +24,7 @@ export const Banner = () => {
               onClick={() => {
                 dispatch({ type: 'toggle' });
               }}
-              className="flex items-center justify-center rounded-md border border-blue-600 px-2 py-2 text-blue-600 font-medium text-white shadow-sm hover:bg-blue-700"
+              className="flex items-center justify-center rounded-md border border-blue-600 px-2 py-2 text-blue-600 font-medium text-blue-600 shadow-sm hover:bg-blue-600 hover:border-blue-700 hover:text-white"
             >
               Create an Account
             </button>
