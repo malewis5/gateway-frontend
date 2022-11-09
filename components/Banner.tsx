@@ -1,4 +1,7 @@
+import { useLoginModal } from '../context/LoginModalContext';
+
 export const Banner = () => {
+  const { dispatch } = useLoginModal();
   return (
     <div className="w-full overflow-x-hidden border-b">
       <div className="min-h-[80px] flex justify-center ">
@@ -17,10 +20,20 @@ export const Banner = () => {
             </h2>
           </div>
           <div className="flex gap-[10px] items-center justify-center">
-            <button className="flex items-center justify-center rounded-md border border-blue-600 px-2 py-2 text-blue-600 font-medium text-white shadow-sm hover:bg-blue-700">
+            <button
+              onClick={() => {
+                dispatch({ type: 'toggle' });
+              }}
+              className="flex items-center justify-center rounded-md border border-blue-600 px-2 py-2 text-blue-600 font-medium text-white shadow-sm hover:bg-blue-700"
+            >
               Create an Account
             </button>
-            <button className="flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-2 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700">
+            <button
+              onClick={() => {
+                dispatch({ type: 'toggle' });
+              }}
+              className="flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-2 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700"
+            >
               Sign In
             </button>
           </div>

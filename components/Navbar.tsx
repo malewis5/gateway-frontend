@@ -3,6 +3,7 @@ import { Popover, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useLoginModal } from '../context/LoginModalContext';
+import { useSession } from '@supabase/auth-helpers-react';
 
 const navigation = [
   { name: 'Order', href: '/order' },
@@ -13,6 +14,7 @@ const navigation = [
 
 export default function Navbar() {
   const { dispatch } = useLoginModal();
+  const session = useSession();
   return (
     <header>
       <Popover className="relative bg-white">
@@ -45,22 +47,32 @@ export default function Navbar() {
             ))}
           </Popover.Group>
           <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-            <button
-              onClick={() => {
-                dispatch({ type: 'toggle' });
-              }}
-              className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
-            >
-              Sign in
-            </button>
-            <button
-              onClick={() => {
-                dispatch({ type: 'toggle' });
-              }}
-              className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700"
-            >
-              Sign up
-            </button>
+            {session ? (
+              <img
+                className="inline-block h-10 w-10 rounded-full"
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                alt=""
+              />
+            ) : (
+              <>
+                <button
+                  onClick={() => {
+                    dispatch({ type: 'toggle' });
+                  }}
+                  className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
+                >
+                  Sign in
+                </button>
+                <button
+                  onClick={() => {
+                    dispatch({ type: 'toggle' });
+                  }}
+                  className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700"
+                >
+                  Sign up
+                </button>
+              </>
+            )}
           </div>
         </div>
 
@@ -95,6 +107,53 @@ export default function Navbar() {
                   </div>
                 </div>
               </div>
+              <div className="">
+                {session ? (
+                  <div className="py-5 px-3 flex items-center">
+                    <a href="#" className="group block flex-shrink-0">
+                      <div className="flex items-center">
+                        <div>
+                          <img
+                            className="inline-block h-10 w-10 rounded-full"
+                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                            alt=""
+                          />
+                        </div>
+                        <div className="ml-3">
+                          <p className="text-md font-medium text-gray-700 group-hover:text-gray-900">
+                            {session.user.email}
+                          </p>
+                          <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700">
+                            View profile
+                          </p>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                ) : (
+                  <>
+                    <button
+                      onClick={() => {
+                        dispatch({ type: 'toggle' });
+                      }}
+                      className="flex w-full items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700"
+                    >
+                      Sign up
+                    </button>
+                    <p className="mt-6 text-center text-base font-medium text-gray-500">
+                      Existing customer?{' '}
+                      <button
+                        onClick={() => {
+                          dispatch({ type: 'toggle' });
+                        }}
+                        className="text-gray-900"
+                      >
+                        Sign in
+                      </button>
+                    </p>
+                  </>
+                )}
+              </div>
               <div className="py-6 px-5">
                 <div className="grid grid-cols-2 gap-4">
                   {navigation.map((item) => (
@@ -106,27 +165,6 @@ export default function Navbar() {
                       {item.name}
                     </Link>
                   ))}
-                </div>
-                <div className="mt-6">
-                  <button
-                    onClick={() => {
-                      dispatch({ type: 'toggle' });
-                    }}
-                    className="flex w-full items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700"
-                  >
-                    Sign up
-                  </button>
-                  <p className="mt-6 text-center text-base font-medium text-gray-500">
-                    Existing customer?{' '}
-                    <button
-                      onClick={() => {
-                        dispatch({ type: 'toggle' });
-                      }}
-                      className="text-gray-900"
-                    >
-                      Sign in
-                    </button>
-                  </p>
                 </div>
               </div>
             </div>
