@@ -4,9 +4,10 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useLoginModal } from '../context/LoginModalContext';
 import { useSession } from '@supabase/auth-helpers-react';
+import Image from 'next/image';
 
 const navigation = [
-  { name: 'Order', href: '/order' },
+  { name: 'Order', href: '/#menu' },
   { name: 'Catering', href: '/catering' },
   { name: 'About Us', href: '/about' },
   { name: 'Contact', href: '/contact' },
@@ -19,12 +20,11 @@ export default function Navbar() {
   return (
     <header>
       <Popover className="relative bg-white">
-        {({ open, close }) => (
+        {({ close }) => (
           <>
-            {console.log(open)}
             <div className="mx-auto flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start md:space-x-10 lg:px-12">
               <div className="flex justify-start lg:w-0 lg:flex-1">
-                <Link href="#">
+                <Link href="/">
                   <span className="sr-only">Your Company</span>
                   <img
                     className="h-8 w-auto sm:h-10"
@@ -52,11 +52,13 @@ export default function Navbar() {
               </Popover.Group>
               <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
                 {session ? (
-                  <img
+                  <Image
+                    height={40}
+                    width={40}
                     onClick={() => dispatch({ type: 'toggle' })}
-                    className="inline-block h-10 w-10 rounded-full cursor-pointer"
+                    className="inline-block rounded-full cursor-pointer"
                     src={session.user.user_metadata.avatar_url}
-                    alt=""
+                    alt="user profile picture"
                   />
                 ) : (
                   <>
@@ -115,7 +117,7 @@ export default function Navbar() {
                   <div className="">
                     {session ? (
                       <div className="py-5 px-3 flex items-center">
-                        <a href="#" className="group block flex-shrink-0">
+                        <a href="/" className="group block flex-shrink-0">
                           <div className="flex items-center">
                             <div>
                               <img
