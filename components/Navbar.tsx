@@ -117,7 +117,7 @@ export default function Navbar() {
                   <div className="">
                     {session ? (
                       <div className="py-5 px-3 flex items-center">
-                        <a href="/" className="group block flex-shrink-0">
+                        <Link href="/" className="group block flex-shrink-0">
                           <div className="flex items-center">
                             <div>
                               <img
@@ -135,7 +135,7 @@ export default function Navbar() {
                               </p>
                             </div>
                           </div>
-                        </a>
+                        </Link>
                       </div>
                     ) : (
                       <>
