@@ -1,7 +1,7 @@
 import { useSession } from '@supabase/auth-helpers-react';
 import { Banner } from '../components/Banner';
 import Hero from '../components/Hero';
-import { LoginModal } from '../components/LoginModal';
+import { UserModal } from '../components/UserModal';
 import Navbar from '../components/Navbar';
 
 export default function Home() {
@@ -13,7 +13,7 @@ export default function Home() {
         <Hero />
         {!session && <Banner />}
 
-        <LoginModal />
+        <UserModal />
       </main>
     </>
   );

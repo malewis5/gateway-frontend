@@ -3,9 +3,11 @@ import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useLoginModal } from '../context/LoginModalContext';
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
-import { Auth, ThemeSupa } from '@supabase/auth-ui-react';
+import { Auth } from '@supabase/auth-ui-react';
+import { Button } from './common/Button';
+import { GatewayTheme } from '../styles/theme';
 
-export function LoginModal() {
+export function UserModal() {
   const { state, dispatch } = useLoginModal();
   const session = useSession();
   const supabase = useSupabaseClient();
@@ -51,11 +53,21 @@ export function LoginModal() {
                     <XMarkIcon color="#2563EB" height={40} width={40} />
                   </div>
                   {!session ? (
-                    <div>
-                      <p>Supabase wyd!</p>
+                    <div className="max-w-[300px] w-full p-5">
+                      <Auth
+                        supabaseClient={supabase}
+                        providers={['google']}
+                        appearance={{ theme: GatewayTheme }}
+                      />
                     </div>
                   ) : (
-                    <p>Account page will go here.</p>
+                    <div className="flex flex-col">
+                      <p>Account page will go here.</p>
+                      <Button
+                        text={'Logout'}
+                        clickHandler={async () => await supabase.auth.signOut()}
+                      />
+                    </div>
                   )}
                 </div>
               </Dialog.Panel>
