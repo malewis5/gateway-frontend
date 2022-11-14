@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useLoginModal } from '../context/LoginModalContext';
 import { useSession } from '@supabase/auth-helpers-react';
 import Image from 'next/image';
+// import LocationSelect from './common/LocationSelect';
 
 const navigation = [
   { name: 'Order', href: '/#menu' },
@@ -32,6 +33,7 @@ export default function Navbar() {
                     alt=""
                   />
                 </Link>
+                <div>{/* <LocationSelect /> */}</div>
               </div>
               <div className="-my-2 -mr-2 md:hidden">
                 <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">

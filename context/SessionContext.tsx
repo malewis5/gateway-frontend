@@ -1,18 +1,19 @@
 import * as React from 'react';
 
-type Action = { type: 'toggle' };
+type Action = { type: 'setLocation'; payload: any };
 type Dispatch = (action: Action) => void;
-type State = { show: boolean };
+type State = { location: string };
 type LoginProviderProps = { children: React.ReactNode };
 
-const LoginModalContext = React.createContext<
+const LocationContext = React.createContext<
   { state: State; dispatch: Dispatch } | undefined
 >(undefined);
 
 function loginReducer(state: State, action: Action) {
   switch (action.type) {
-    case 'toggle': {
-      return { show: !state.show };
+    case 'setLocation': {
+      localStorage.setItem('location', JSON.stringify(action.payload));
+      return { location: action.payload };
     }
 
     default: {
@@ -21,24 +22,37 @@ function loginReducer(state: State, action: Action) {
   }
 }
 
-function LoginModalProvider({ children }: LoginProviderProps) {
-  const [state, dispatch] = React.useReducer(loginReducer, { show: false });
-  // NOTE: you *might* need to memoize this value
-  // Learn more in http://kcd.im/optimize-context
+function SessionLocationProvider({ children }: LoginProviderProps) {
+  const [state, dispatch] = React.useReducer(loginReducer, {
+    location: '',
+  });
+
+  // Local Storage: setting & getting data
+  React.useEffect(() => {
+    let location;
+    try {
+      location = JSON.parse(localStorage?.getItem('location') ?? '');
+    } catch (e) {}
+
+    if (location) {
+      dispatch({ type: 'setLocation', payload: location });
+    }
+  }, []);
+
   const value = { state, dispatch };
   return (
-    <LoginModalContext.Provider value={value}>
+    <LocationContext.Provider value={value}>
       {children}
-    </LoginModalContext.Provider>
+    </LocationContext.Provider>
   );
 }
 
-function useLoginModal() {
-  const context = React.useContext(LoginModalContext);
+function useLocation() {
+  const context = React.useContext(LocationContext);
   if (context === undefined) {
     throw new Error('useCount must be used within a CountProvider');
   }
   return context;
 }
 
-export { LoginModalProvider, useLoginModal };
+export { SessionLocationProvider, useLocation };

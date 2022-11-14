@@ -1,6 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+const EXTERNAL_ORDER_ROUTE =
+  'https://www.clover.com/online-ordering/gateway-subs-saint-petersburg-st-petersburg';
+
 const menu = [
   {
     name: 'subs',
@@ -47,7 +50,7 @@ export default function Menu() {
       className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 uppercase overflow-hidden"
     >
       {menu.map((item) => (
-        <Link href={`order/${item.route}`} key={item.name}>
+        <Link href={EXTERNAL_ORDER_ROUTE} key={item.name}>
           <li
             key={item.name}
             className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white group cursor-pointer"

@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { LoginModalProvider } from '../context/LoginModalContext';
 import Layout from '../components/Layout';
 import { Analytics } from '@vercel/analytics/react';
+import { SessionLocationProvider } from '../context/SessionContext';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [supabaseClient] = useState(() => createBrowserSupabaseClient());
@@ -15,12 +16,14 @@ export default function App({ Component, pageProps }: AppProps) {
       supabaseClient={supabaseClient}
       initialSession={pageProps.initialSession}
     >
-      <LoginModalProvider>
-        <Layout>
-          <Component {...pageProps} />
-          <Analytics />
-        </Layout>
-      </LoginModalProvider>
+      <SessionLocationProvider>
+        <LoginModalProvider>
+          <Layout>
+            <Component {...pageProps} />
+            <Analytics />
+          </Layout>
+        </LoginModalProvider>
+      </SessionLocationProvider>
     </SessionContextProvider>
   );
 }
