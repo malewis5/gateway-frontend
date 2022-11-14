@@ -59,9 +59,7 @@ export function UserModal() {
                         supabaseClient={supabase}
                         providers={['google']}
                         appearance={{ theme: GatewayTheme }}
-                        redirectTo={
-                          'https://gateway-frontend-alpha.vercel.app/'
-                        }
+                        redirectTo={process.env.NEXT_PUBLIC_AUTH_REDIRECT}
                       />
                     </div>
                   ) : (
@@ -69,7 +67,10 @@ export function UserModal() {
                       <p>Account page will go here.</p>
                       <Button
                         text={'Logout'}
-                        clickHandler={async () => await supabase.auth.signOut()}
+                        clickHandler={async () => {
+                          dispatch({ type: 'toggle' });
+                          await supabase.auth.signOut();
+                        }}
                       />
                     </div>
                   )}

@@ -22,7 +22,7 @@ export default function Navbar() {
       <Popover className="relative bg-white">
         {({ close }) => (
           <>
-            <div className="mx-auto flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start md:space-x-10 lg:px-12">
+            <div className="mx-auto flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start md:space-x-10 lg:px-5">
               <div className="flex justify-start lg:w-0 lg:flex-1">
                 <Link href="/">
                   <span className="sr-only">Your Company</span>
@@ -122,11 +122,14 @@ export default function Navbar() {
                             <div>
                               <img
                                 className="inline-block h-10 w-10 rounded-full"
-                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                alt=""
+                                src={session.user.user_metadata.avatar_url}
+                                alt="profile"
                               />
                             </div>
-                            <div className="ml-3">
+                            <div
+                              className="ml-3 "
+                              onClick={() => dispatch({ type: 'toggle' })}
+                            >
                               <p className="text-md font-medium text-gray-700 group-hover:text-gray-900">
                                 {session.user.email}
                               </p>
@@ -138,7 +141,7 @@ export default function Navbar() {
                         </Link>
                       </div>
                     ) : (
-                      <>
+                      <div className="py-5 px-5">
                         <button
                           onClick={() => {
                             close();
@@ -161,13 +164,14 @@ export default function Navbar() {
                             Sign in
                           </button>
                         </p>
-                      </>
+                      </div>
                     )}
                   </div>
                   <div className="py-6 px-5">
                     <div className="grid grid-cols-2 gap-4">
                       {navigation.map((item) => (
                         <Link
+                          onClick={() => close()}
                           key={item.name}
                           href={item.href}
                           className="text-base font-medium text-gray-900 hover:text-gray-700"
