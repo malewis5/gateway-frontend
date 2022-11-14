@@ -11,6 +11,7 @@ export function UserModal() {
   const { state, dispatch } = useLoginModal();
   const session = useSession();
   const supabase = useSupabaseClient();
+  const URL = process.env.NEXT_PUBLIC_AUTH_REDIRECT;
 
   return (
     <Transition.Root show={state.show} as={Fragment}>
@@ -58,6 +59,7 @@ export function UserModal() {
                         supabaseClient={supabase}
                         providers={['google']}
                         appearance={{ theme: GatewayTheme }}
+                        redirectTo={URL}
                       />
                     </div>
                   ) : (
