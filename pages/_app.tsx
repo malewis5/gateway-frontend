@@ -5,6 +5,7 @@ import { SessionContextProvider } from '@supabase/auth-helpers-react';
 import { useState } from 'react';
 import { LoginModalProvider } from '../context/LoginModalContext';
 import Layout from '../components/Layout';
+import { Analytics } from '@vercel/analytics/react';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [supabaseClient] = useState(() => createBrowserSupabaseClient());
@@ -17,6 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <LoginModalProvider>
         <Layout>
           <Component {...pageProps} />
+          <Analytics />
         </Layout>
       </LoginModalProvider>
     </SessionContextProvider>
