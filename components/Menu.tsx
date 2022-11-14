@@ -43,7 +43,7 @@ export default function Menu() {
       className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 uppercase overflow-hidden"
     >
       {menu.map((item) => (
-        <Link href={`order/${item.name}`}>
+        <Link href={`order/${item.name}`} key={item.name}>
           <li
             key={item.name}
             className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white group cursor-pointer"
