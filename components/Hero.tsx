@@ -1,8 +1,18 @@
+import Image from 'next/image';
 import Link from 'next/link';
+import heroImage from '../public/hero.webp';
 
 export default function Hero() {
   return (
-    <div className="min-h-[520px] flex items-center justify-center flex-col bg-hero sm:bg-cover bg-left">
+    <div className="min-h-[520px] flex items-center justify-center flex-col relative">
+      <Image
+        priority
+        src={heroImage}
+        placeholder="blur"
+        layout="fill"
+        alt=""
+        className="z-[-1] object-cover"
+      />
       <h1 className="text-center text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl ">
         <span className="block text-white mb-[20px]">Gateway Subs</span>
       </h1>

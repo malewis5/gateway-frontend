@@ -39,7 +39,10 @@ export default function Navbar() {
                   <Bars3Icon className="h-6 w-6" aria-hidden="true" />
                 </Popover.Button>
               </div>
-              <Popover.Group as="nav" className="hidden space-x-10 md:flex">
+              <Popover.Group
+                as="nav"
+                className="hidden space-x-10 md:flex uppercase"
+              >
                 {navigation.map((item) => (
                   <Link
                     key={item.name}

@@ -4,33 +4,37 @@ import Link from 'next/link';
 const menu = [
   {
     name: 'subs',
+    route: 'subs',
     imageUrl:
       'https://www.chipotle.com/content/dam/chipotle/global/menu/meal-types/cmg-10001-burrito/web-desktop/order.png',
   },
   {
     name: 'salads',
-
+    route: 'salads',
     imageUrl:
       'https://www.chipotle.com/content/dam/chipotle/global/menu/meal-types/cmg-10001-burrito/web-desktop/order.png',
   },
   {
     name: 'coffee',
-
+    route: 'coffee',
     imageUrl:
       'https://www.chipotle.com/content/dam/chipotle/global/menu/meal-types/cmg-10001-burrito/web-desktop/order.png',
   },
   {
     name: 'breakfast',
+    route: 'breakfast',
     imageUrl:
       'https://www.chipotle.com/content/dam/chipotle/global/menu/meal-types/cmg-10001-burrito/web-desktop/order.png',
   },
   {
     name: 'beverages',
+    route: 'beverages',
     imageUrl:
       'https://www.chipotle.com/content/dam/chipotle/global/menu/meal-types/cmg-10001-burrito/web-desktop/order.png',
   },
   {
     name: 'all items',
+    route: 'all-items',
     imageUrl:
       'https://www.chipotle.com/content/dam/chipotle/global/menu/meal-types/cmg-10001-burrito/web-desktop/order.png',
   },
@@ -43,7 +47,7 @@ export default function Menu() {
       className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 uppercase overflow-hidden"
     >
       {menu.map((item) => (
-        <Link href={`order/${item.name}`} key={item.name}>
+        <Link href={`order/${item.route}`} key={item.name}>
           <li
             key={item.name}
             className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white group cursor-pointer"

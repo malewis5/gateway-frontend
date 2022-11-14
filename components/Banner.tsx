@@ -1,5 +1,4 @@
 import { useLoginModal } from '../context/LoginModalContext';
-import Image from 'next/image';
 
 export const Banner = () => {
   const { dispatch } = useLoginModal();
@@ -9,6 +8,8 @@ export const Banner = () => {
         <div className="flex w-[90%] max-width-[1200px] items-center justify-center uppercase gap-[15px] flex-col md:flex-row my-[14px]">
           <div className="w-[62px] h-[62px] md:flex hidden items-center justify-center">
             <img
+              height={62}
+              width={62}
               className="h-[62px] w-[62px] sm:h-10"
               src="https://tailwindui.com/img/logos/mark.svg?color=blue&shade=600"
               alt=""
