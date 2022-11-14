@@ -59,7 +59,9 @@ export function UserModal() {
                         supabaseClient={supabase}
                         providers={['google']}
                         appearance={{ theme: GatewayTheme }}
-                        redirectTo={URL}
+                        redirectTo={
+                          'https://gateway-frontend-alpha.vercel.app/'
+                        }
                       />
                     </div>
                   ) : (
