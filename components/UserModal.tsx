@@ -6,6 +6,7 @@ import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
 import { Auth } from '@supabase/auth-ui-react';
 import { Button } from './common/Button';
 import { GatewayTheme } from '../styles/theme';
+import UserAccount from './UserAccount';
 
 export function UserModal() {
   const { state, dispatch } = useLoginModal();
@@ -57,22 +58,13 @@ export function UserModal() {
                     <div className="max-w-[300px] w-full p-5">
                       <Auth
                         supabaseClient={supabase}
-                        providers={['google']}
+                        providers={['google', 'apple']}
                         appearance={{ theme: GatewayTheme }}
                         redirectTo={process.env.NEXT_PUBLIC_AUTH_REDIRECT}
                       />
                     </div>
                   ) : (
-                    <div className="flex flex-col">
-                      <p>Account page will go here.</p>
-                      <Button
-                        text={'Logout'}
-                        clickHandler={async () => {
-                          dispatch({ type: 'toggle' });
-                          await supabase.auth.signOut();
-                        }}
-                      />
-                    </div>
+                    <UserAccount />
                   )}
                 </div>
               </Dialog.Panel>
