@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { useLoginModal } from '../context/LoginModalContext';
 import { useSession } from '@supabase/auth-helpers-react';
 import Image from 'next/image';
-// import LocationSelect from './common/LocationSelect';
 
 const navigation = [
   { name: 'Order', href: '/#menu' },

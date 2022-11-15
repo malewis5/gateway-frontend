@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { LoginModalProvider } from '../context/LoginModalContext';
 import Layout from '../components/Layout';
 import { Analytics } from '@vercel/analytics/react';
-import { SessionLocationProvider } from '../context/SessionContext';
+import { UserContextProvider } from '../context/UserContext';
 import { DefaultSeo } from 'next-seo';
 import SEO from '../next-seo.config';
 
@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
       initialSession={pageProps.initialSession}
     >
       {/* Provider for accessing selected location */}
-      <SessionLocationProvider>
+      <UserContextProvider>
         {/* Modal context provider */}
         <LoginModalProvider>
           {/* Custom Layout */}
@@ -30,7 +30,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <Analytics />
           </Layout>
         </LoginModalProvider>
-      </SessionLocationProvider>
+      </UserContextProvider>
     </SessionContextProvider>
   );
 }

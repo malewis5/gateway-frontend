@@ -3,10 +3,8 @@ import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useLoginModal } from '../context/LoginModalContext';
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
-import { Auth } from '@supabase/auth-ui-react';
-import { Button } from './common/Button';
-import { GatewayTheme } from '../styles/theme';
 import UserAccount from './UserAccount';
+import LoginForm from './common/LoginForm';
 
 export function UserModal() {
   const { state, dispatch } = useLoginModal();
@@ -50,22 +48,11 @@ export function UserModal() {
                 <div className="w-full h-full flex items-center justify-center">
                   <div
                     onClick={() => dispatch({ type: 'toggle' })}
-                    className="bg-white rounded-[50%] flex absolute top-[10px] right-[1.5em] cursor-pointer items-center justify-center"
+                    className="bg-white rounded-[50%] flex absolute top-[24px] right-[20px] cursor-pointer items-center justify-center"
                   >
                     <XMarkIcon color="#2563EB" height={40} width={40} />
                   </div>
-                  {!session ? (
-                    <div className="max-w-[300px] w-full p-5">
-                      <Auth
-                        supabaseClient={supabase}
-                        providers={['google', 'apple']}
-                        appearance={{ theme: GatewayTheme }}
-                        redirectTo={process.env.NEXT_PUBLIC_AUTH_REDIRECT}
-                      />
-                    </div>
-                  ) : (
-                    <UserAccount />
-                  )}
+                  {!session ? <LoginForm /> : <UserAccount />}
                 </div>
               </Dialog.Panel>
             </Transition.Child>

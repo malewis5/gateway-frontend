@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useDebugValue } from 'react';
 
 type Action = { type: 'toggle' };
 type Dispatch = (action: Action) => void;
