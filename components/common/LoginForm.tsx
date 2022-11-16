@@ -8,39 +8,75 @@ export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [newUser, setNewUser] = useState(false);
-  const [forgetPassword, setForgotPassword] = useState(false);
+  const [forgotPassword, setForgotPassword] = useState(false);
+  const [error, setError] = useState<any>();
+  const [emailConfirmation, setEmailConfirmation] = useState(false);
 
   const supabase = useSupabaseClient();
 
   const signInWithGoogle = async () => {
-    await supabase.auth.signInWithOAuth({
+    const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: { redirectTo: signInRedirect },
     });
+    if (error) setError(error);
   };
 
   const signInWithPassword = async (email: string, password: string) => {
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
+    if (error) setError(error);
+  };
+
+  const createUserWithPassword = async (email: string, password: string) => {
+    setError(null);
+    const { error } = await supabase.auth.signUp({ email, password });
+    if (error) setError(error);
+    else setEmailConfirmation(true);
   };
 
   const signInWithApple = async () => {
-    await supabase.auth.signInWithOAuth({
+    const { error } = await supabase.auth.signInWithOAuth({
       provider: 'apple',
       options: { redirectTo: signInRedirect },
     });
+    if (error) setError(error);
   };
 
   const resetPassword = async (email: string) => {
     await supabase.auth.resetPasswordForEmail(email);
   };
 
-  if (forgetPassword) {
+  if (emailConfirmation) {
     return (
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+      <div className="sm:mx-auto w-full sm:max-w-md max-w-xs">
+        <div className="bg-white md:py-8 md:px-4 md:shadow md:rounded-lg sm:px-10 text-left">
+          <h1 className="text-lg mb-2">
+            A verification link has been sent to {email}.
+          </h1>
+          <h2 className="text-md mb-2">
+            Please confirm your account by following the link sent to your
+            email. You will not be able to sign in until you confirm your email.
+          </h2>
+          <p
+            className="font-medium text-blue-600 hover:text-blue-500 cursor-pointer"
+            onClick={() => {
+              setEmailConfirmation(false);
+            }}
+          >
+            Back to sign in
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (forgotPassword) {
+    return (
+      <div className="sm:mx-auto w-full sm:max-w-md max-w-xs">
+        <div className="bg-white md:py-8 md:px-4 md:shadow md:rounded-lg sm:px-10">
           <form className="space-y-6">
             <div>
               <label
@@ -89,35 +125,37 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-      <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-        <div className="mb-6 grid grid-rows-2 gap-2">
-          <div>
-            <div
-              onClick={signInWithGoogle}
-              className="flex w-full cursor-pointer justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
-            >
-              <span className="sr-only">Continue with Google</span>
-              <div className="relative h-5 w-5 mr-2">
-                <Image alt="google" src="/svg/google.svg" layout={'fill'} />
+    <div className="sm:mx-auto w-full sm:max-w-md max-w-xs">
+      <div className="bg-white md:py-8 md:px-4 md:shadow md:rounded-lg sm:px-10">
+        {!forgotPassword && (
+          <div className="mb-6 grid grid-rows-2 gap-2">
+            <div>
+              <div
+                onClick={signInWithGoogle}
+                className="flex w-full cursor-pointer justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
+              >
+                <span className="sr-only">Continue with Google</span>
+                <div className="relative h-5 w-5 mr-2">
+                  <Image alt="google" src="/svg/google.svg" layout={'fill'} />
+                </div>
+                <p>Continue with Google</p>
               </div>
-              <p>Continue with Google</p>
             </div>
-          </div>
 
-          <div>
-            <div
-              onClick={signInWithApple}
-              className="flex w-full cursor-pointer justify-center rounded-md border border-gray-300 bg-black py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-black-800"
-            >
-              <span className="sr-only">Continue with Apple</span>
-              <div className="relative h-5 w-5 mr-2">
-                <Image alt="google" src="/svg/apple.svg" layout={'fill'} />
+            <div>
+              <div
+                onClick={signInWithApple}
+                className="flex w-full cursor-pointer justify-center rounded-md border border-gray-300 bg-black py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-black-800"
+              >
+                <span className="sr-only">Continue with Apple</span>
+                <div className="relative h-5 w-5 mr-2">
+                  <Image alt="google" src="/svg/apple.svg" layout={'fill'} />
+                </div>
+                <p>Continue with Apple</p>
               </div>
-              <p>Continue with Apple</p>
             </div>
           </div>
-        </div>
+        )}
         <form className="space-y-6">
           <div>
             <label
@@ -165,13 +203,29 @@ export default function LoginForm() {
             <button
               onClick={(e) => {
                 e.preventDefault();
-                signInWithPassword(email, password);
+                newUser
+                  ? createUserWithPassword(email, password)
+                  : signInWithPassword(email, password);
               }}
               type="submit"
               className="flex w-full justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
               Sign {newUser ? 'up' : 'in'}
             </button>
+            {error && (
+              <p className="text-xs text-red-600 text-left mt-1">
+                Incorrect username or password. Please try again or you can{' '}
+                <span
+                  onClick={() => {
+                    setError(false);
+                    setForgotPassword(true);
+                  }}
+                  className="underline cursor-pointer"
+                >
+                  reset your password.
+                </span>
+              </p>
+            )}
           </div>
 
           <div className="flex-col items-center justify-center">

@@ -4,7 +4,6 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useLoginModal } from '../context/LoginModalContext';
 import { useSession } from '@supabase/auth-helpers-react';
-import Image from 'next/image';
 
 const navigation = [
   { name: 'Order', href: '/#menu' },
@@ -32,7 +31,6 @@ export default function Navbar() {
                     alt=""
                   />
                 </Link>
-                <div>{/* <LocationSelect /> */}</div>
               </div>
               <div className="-my-2 -mr-2 md:hidden">
                 <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
@@ -56,14 +54,24 @@ export default function Navbar() {
               </Popover.Group>
               <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
                 {session ? (
-                  <Image
-                    height={40}
-                    width={40}
+                  <div
+                    className="h-[40px] w-[40px] rounded-full group flex justify-center items-center text-lg border border-blue-600 cursor-pointer"
                     onClick={() => dispatch({ type: 'toggle' })}
-                    className="inline-block rounded-full cursor-pointer"
-                    src={session.user.user_metadata.avatar_url}
-                    alt="user profile picture"
-                  />
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      className="w-6 h-6 stroke-blue-600 group-hover:fill-blue-600"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                      />
+                    </svg>
+                  </div>
                 ) : (
                   <>
                     <button
@@ -123,13 +131,6 @@ export default function Navbar() {
                       <div className="py-5 px-3 flex items-center">
                         <Link href="/" className="group block flex-shrink-0">
                           <div className="flex items-center">
-                            <div>
-                              <img
-                                className="inline-block h-10 w-10 rounded-full"
-                                src={session.user.user_metadata.avatar_url}
-                                alt="profile"
-                              />
-                            </div>
                             <div
                               className="ml-3 "
                               onClick={() => dispatch({ type: 'toggle' })}

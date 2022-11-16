@@ -1,6 +1,7 @@
 import { PhoneIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { Input } from '../components/common/Input';
 
 const locations = [
   {
@@ -89,45 +90,30 @@ export default function Example() {
         <div className="bg-white px-4 sm:px-6 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
           <div className="mx-auto max-w-lg lg:max-w-none">
             <form action="#" method="POST" className="grid grid-cols-1 gap-y-6">
-              <div>
-                <label htmlFor="full-name" className="sr-only">
-                  Full name
-                </label>
-                <input
-                  type="text"
-                  name="full-name"
-                  id="full-name"
-                  autoComplete="name"
-                  className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                  placeholder="Full name"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="sr-only">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                  placeholder="Email"
-                />
-              </div>
-              <div>
-                <label htmlFor="phone" className="sr-only">
-                  Phone
-                </label>
-                <input
-                  type="text"
-                  name="phone"
-                  id="phone"
-                  autoComplete="tel"
-                  className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                  placeholder="Phone"
-                />
-              </div>
+              <Input
+                htmlFor="full-name"
+                type="text"
+                name="full-name"
+                id="full-name"
+                autoComplete="name"
+                placeholder="Full name"
+              />
+              <Input
+                htmlFor="email"
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                placeholder="Email"
+              />
+              <Input
+                htmlFor="phone"
+                type="text"
+                name="phone"
+                id="phone"
+                autoComplete="tel"
+                placeholder="Phone"
+              />
               <div>
                 <label htmlFor="message" className="sr-only">
                   Message
