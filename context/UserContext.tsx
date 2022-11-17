@@ -43,17 +43,20 @@ function UserContextProvider({ children }: LoginProviderProps) {
 
   const supabase = useSupabaseClient();
   const fetchUser = async (user_id?: string) => {
-    const response = await supabase
-      .from('profiles')
-      .select('*')
-      .eq('id', user_id)
-      .then((res) => {
-        return res.data;
-      });
-    dispatch({ type: 'setUser', payload: response?.[0] });
+    let { data, error } = await supabase.from('profiles').select('*');
+    if (error) {
+      console.log(error);
+      await supabase.auth.signOut();
+      return;
+    }
+    dispatch({ type: 'setUser', payload: data?.[0] });
   };
 
-  supabase.auth.onAuthStateChange((e, session) => fetchUser(session?.user.id));
+  supabase.auth.onAuthStateChange((e, session) => {
+    if ((e = 'SIGNED_IN')) {
+      fetchUser(session?.user.id);
+    }
+  });
 
   const value = { state, dispatch };
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
