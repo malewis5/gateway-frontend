@@ -1,4 +1,5 @@
 import { NextSeo } from 'next-seo';
+import Image from 'next/image';
 
 const people = [
   {
@@ -90,11 +91,14 @@ export default function About() {
                 {people.map((person) => (
                   <li key={person.name}>
                     <div className="flex items-center space-x-4 lg:space-x-6">
-                      <img
-                        className="h-16 w-16 rounded-full lg:h-20 lg:w-20"
-                        src={person.imageUrl}
-                        alt=""
-                      />
+                      <div className="relative h-16 w-16 lg:h-20 lg:w-20">
+                        <Image
+                          fill
+                          src={person.imageUrl}
+                          alt=""
+                          className="rounded-full"
+                        />
+                      </div>
                       <div className="space-y-1 text-lg font-medium leading-6">
                         <h3>{person.name}</h3>
                         <p className="text-blue-700">{person.role}</p>

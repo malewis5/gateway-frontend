@@ -140,7 +140,7 @@ export default function LoginForm() {
               >
                 <span className="sr-only">Continue with Google</span>
                 <div className="relative h-5 w-5 mr-2">
-                  <Image alt="google" src="/svg/google.svg" layout={'fill'} />
+                  <Image alt="google" src="/svg/google.svg" fill />
                 </div>
                 <p>Continue with Google</p>
               </div>
@@ -153,7 +153,7 @@ export default function LoginForm() {
               >
                 <span className="sr-only">Continue with Apple</span>
                 <div className="relative h-5 w-5 mr-2">
-                  <Image alt="google" src="/svg/apple.svg" layout={'fill'} />
+                  <Image alt="google" src="/svg/apple.svg" fill />
                 </div>
                 <p>Continue with Apple</p>
               </div>

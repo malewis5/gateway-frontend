@@ -9,7 +9,7 @@ export default function Hero() {
         priority
         src={heroImage}
         placeholder="blur"
-        layout="fill"
+        fill
         alt=""
         className="z-[-1] object-cover"
       />

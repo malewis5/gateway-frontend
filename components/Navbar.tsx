@@ -4,6 +4,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useLoginModal } from '../context/LoginModalContext';
 import { useSession } from '@supabase/auth-helpers-react';
+import Image from 'next/image';
 
 const navigation = [
   { name: 'Order', href: '/#menu' },
@@ -24,12 +25,10 @@ export default function Navbar() {
             <div className="mx-auto flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start md:space-x-10 lg:px-5">
               <div className="flex justify-start lg:w-0 lg:flex-1">
                 <Link href="/">
-                  <span className="sr-only">Your Company</span>
-                  <img
-                    className="h-8 w-auto sm:h-10"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=blue&shade=600"
-                    alt=""
-                  />
+                  <span className="sr-only">Gateway Subs</span>
+                  <div className="h-8 w-10 sm:h-10 sm:w-12 border relative">
+                    <Image fill src="/svg/gateway.svg" alt="" />
+                  </div>
                 </Link>
               </div>
               <div className="-my-2 -mr-2 md:hidden">
@@ -114,11 +113,13 @@ export default function Navbar() {
                   <div className="px-5 pt-5 pb-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <img
-                          className="h-8 w-auto"
-                          src="https://tailwindui.com/img/logos/mark.svg?color=blue&shade=600"
-                          alt="Your Company"
-                        />
+                        <div className="relative h-8 w-10">
+                          <Image
+                            fill
+                            src="/svg/gateway.svg"
+                            alt="Your Company"
+                          />
+                        </div>
                       </div>
                       <div className="-mr-2">
                         <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
