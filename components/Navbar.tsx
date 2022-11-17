@@ -26,7 +26,7 @@ export default function Navbar() {
               <div className="flex justify-start lg:w-0 lg:flex-1">
                 <Link href="/">
                   <span className="sr-only">Gateway Subs</span>
-                  <div className="h-8 w-10 sm:h-10 sm:w-12 border relative">
+                  <div className="h-8 w-10 sm:h-10 sm:w-12 relative">
                     <Image fill src="/svg/gateway.svg" alt="" />
                   </div>
                 </Link>
