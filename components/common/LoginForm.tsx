@@ -48,7 +48,9 @@ export default function LoginForm() {
   };
 
   const resetPassword = async (email: string) => {
-    await supabase.auth.resetPasswordForEmail(email);
+    await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${signInRedirect}/reset-password`,
+    });
   };
 
   if (emailConfirmation) {
