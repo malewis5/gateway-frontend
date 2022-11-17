@@ -76,6 +76,7 @@ export default function Navbar() {
                   <>
                     <button
                       onClick={() => {
+                        dispatch({ type: 'sign-in' });
                         dispatch({ type: 'toggle' });
                       }}
                       className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
@@ -85,6 +86,7 @@ export default function Navbar() {
                     <button
                       onClick={() => {
                         dispatch({ type: 'toggle' });
+                        dispatch({ type: 'sign-up' });
                       }}
                       className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700"
                     >
@@ -150,6 +152,7 @@ export default function Navbar() {
                         <button
                           onClick={() => {
                             close();
+                            dispatch({ type: 'sign-up' });
                             dispatch({ type: 'toggle' });
                           }}
                           className="flex w-full items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700"

@@ -1,13 +1,15 @@
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import Image from 'next/image';
 import { useState } from 'react';
+import { useLoginModal } from '../../context/LoginModalContext';
 
 export default function LoginForm() {
   const signInRedirect = process.env.NEXT_PUBLIC_AUTH_REDIRECT;
 
+  const { state, dispatch } = useLoginModal();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [newUser, setNewUser] = useState(false);
   const [forgotPassword, setForgotPassword] = useState(false);
   const [error, setError] = useState<any>();
   const [emailConfirmation, setEmailConfirmation] = useState(false);
@@ -203,14 +205,14 @@ export default function LoginForm() {
             <button
               onClick={(e) => {
                 e.preventDefault();
-                newUser
+                state.signup
                   ? createUserWithPassword(email, password)
                   : signInWithPassword(email, password);
               }}
               type="submit"
               className="flex w-full justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
-              Sign {newUser ? 'up' : 'in'}
+              Sign {state.signup ? 'up' : 'in'}
             </button>
             {error && (
               <p className="text-xs text-red-600 text-left mt-1">
@@ -229,7 +231,7 @@ export default function LoginForm() {
           </div>
 
           <div className="flex-col items-center justify-center">
-            {!newUser && (
+            {!state.signup && (
               <div
                 className="text-sm hover:underline"
                 onClick={() => setForgotPassword(true)}
@@ -245,13 +247,17 @@ export default function LoginForm() {
 
             <div
               className="text-sm hover:underline"
-              onClick={() => setNewUser(!newUser)}
+              onClick={() =>
+                state.signup
+                  ? dispatch({ type: 'sign-in' })
+                  : dispatch({ type: 'sign-up' })
+              }
             >
               <a
                 href="#"
                 className="font-medium text-blue-600 hover:text-blue-500"
               >
-                {newUser
+                {state.signup
                   ? 'Already have an account? Sign in'
                   : "Don't have an account? Sign up"}
               </a>
