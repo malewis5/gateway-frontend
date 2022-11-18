@@ -218,16 +218,7 @@ export default function LoginForm() {
             </button>
             {error && (
               <p className="text-xs text-red-600 text-left mt-1">
-                Incorrect username or password. Please try again or you can{' '}
-                <span
-                  onClick={() => {
-                    setError(false);
-                    setForgotPassword(true);
-                  }}
-                  className="underline cursor-pointer"
-                >
-                  reset your password.
-                </span>
+                {error.message}
               </p>
             )}
           </div>

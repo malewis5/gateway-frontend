@@ -13,13 +13,7 @@ import { useRouter } from 'next/router';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [supabaseClient] = useState(() => createBrowserSupabaseClient());
-
   const router = useRouter();
-
-  if (router.asPath == '/reset-password') {
-    return <Component {...pageProps} />;
-  }
-
   return (
     // Supabase provider
     <SessionContextProvider
@@ -32,10 +26,17 @@ export default function App({ Component, pageProps }: AppProps) {
         <LoginModalProvider>
           {/* Custom Layout */}
           <DefaultSeo {...SEO} />
-          <Layout>
-            <Component {...pageProps} />
-            <Analytics />
-          </Layout>
+          {router.asPath.includes('/reset-password') ? (
+            <>
+              <Component {...pageProps} />
+              <Analytics />
+            </>
+          ) : (
+            <Layout>
+              <Component {...pageProps} />
+              <Analytics />
+            </Layout>
+          )}
         </LoginModalProvider>
       </UserContextProvider>
     </SessionContextProvider>

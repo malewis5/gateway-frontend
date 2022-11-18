@@ -52,11 +52,12 @@ function UserContextProvider({ children }: LoginProviderProps) {
     dispatch({ type: 'setUser', payload: data?.[0] });
   };
 
-  supabase.auth.onAuthStateChange((e, session) => {
-    if ((e = 'SIGNED_IN')) {
-      fetchUser(session?.user.id);
-    }
-  });
+  // supabase.auth.onAuthStateChange((e, session) => {
+  //   console.log(e);
+  //   if ((e = 'SIGNED_IN')) {
+  //     fetchUser(session?.user.id);
+  //   }
+  // });
 
   const value = { state, dispatch };
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
