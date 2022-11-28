@@ -65,7 +65,7 @@ export default function LoginForm() {
             email. You will not be able to sign in until you confirm your email.
           </h2>
           <p
-            className="font-medium text-blue-600 hover:text-blue-500 cursor-pointer"
+            className="font-medium text-primary hover:text-blue-500 cursor-pointer"
             onClick={() => {
               setEmailConfirmation(false);
             }}
@@ -109,7 +109,7 @@ export default function LoginForm() {
                   resetPassword(email);
                 }}
                 type="submit"
-                className="flex w-full justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                className="flex w-full justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-darkBlue focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
                 Reset Password
               </button>
@@ -118,7 +118,7 @@ export default function LoginForm() {
               className="text-sm hover:underline"
               onClick={() => setForgotPassword(false)}
             >
-              <p className="font-medium text-blue-600 hover:text-blue-500 cursor-pointer">
+              <p className="font-medium text-primary hover:text-blue-500 cursor-pointer">
                 Back to sign in
               </p>
             </div>
@@ -212,7 +212,7 @@ export default function LoginForm() {
                   : signInWithPassword(email, password);
               }}
               type="submit"
-              className="flex w-full justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="flex w-full justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-darkBlue focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
               Sign {state.signup ? 'up' : 'in'}
             </button>
@@ -231,7 +231,7 @@ export default function LoginForm() {
               >
                 <a
                   href="#"
-                  className="font-medium text-blue-600 hover:text-blue-500"
+                  className="font-medium text-primary hover:text-blue-500"
                 >
                   Forgot your password?
                 </a>
@@ -248,7 +248,7 @@ export default function LoginForm() {
             >
               <a
                 href="#"
-                className="font-medium text-blue-600 hover:text-blue-500"
+                className="font-medium text-primary hover:text-blue-500"
               >
                 {state.signup
                   ? 'Already have an account? Sign in'

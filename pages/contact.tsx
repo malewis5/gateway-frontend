@@ -130,7 +130,7 @@ export default function Example() {
               <div>
                 <button
                   type="submit"
-                  className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-3 px-6 text-base font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  className="inline-flex justify-center rounded-md border border-transparent bg-primary py-3 px-6 text-base font-medium text-white shadow-sm hover:bg-darkBlue focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 >
                   Submit
                 </button>
@@ -140,8 +140,8 @@ export default function Example() {
         </div>
       </div>
       <div className="mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:px-8">
-        <div className="divide-y-2 divide-gray-200">
-          <div className="lg:grid lg:grid-cols-3 lg:gap-8">
+        {/* <div className="divide-y-2 divide-gray-200"> */}
+        {/* <div className="lg:grid lg:grid-cols-3 lg:gap-8">
             <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl sm:tracking-tight">
               Customer Support
             </h2>
@@ -207,34 +207,33 @@ export default function Example() {
                 </dl>
               </div>
             </div>
-          </div>
-
-          <div className="mt-16 pt-16 lg:grid lg:grid-cols-3 lg:gap-8">
-            <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl sm:tracking-tight">
-              Locations
-            </h2>
-            <div className="mt-8 grid grid-cols-1 gap-12 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-12 lg:col-span-2 lg:mt-0">
-              {locations.map((item) => {
-                return (
-                  <div key={item.name}>
-                    <h3 className="text-lg font-medium leading-6 text-gray-900">
-                      {item.name}
-                    </h3>
-                    <div className="mt-2 text-base text-gray-500">
-                      <Link href={ios ? item.appleLink : item.googleLink}>
-                        {item.address}
-                      </Link>
-                    </div>
-                    <div className="mt-2 text-base text-gray-500">
-                      <Link href={`tel:${item.phone}`}>{item.phone}</Link>
-                    </div>
+          </div> */}
+        <div className="lg:grid lg:grid-cols-3 lg:gap-8">
+          <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl sm:tracking-tight">
+            Locations
+          </h2>
+          <div className="mt-8 grid grid-cols-1 gap-12 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-12 lg:col-span-2 lg:mt-0">
+            {locations.map((item) => {
+              return (
+                <div key={item.name}>
+                  <h3 className="text-lg font-medium leading-6 text-gray-900">
+                    {item.name}
+                  </h3>
+                  <div className="mt-2 text-base text-gray-500 underline">
+                    <Link href={ios ? item.appleLink : item.googleLink}>
+                      {item.address}
+                    </Link>
                   </div>
-                );
-              })}
-            </div>
+                  <div className="mt-2 text-base text-gray-500 underline">
+                    <Link href={`tel:${item.phone}`}>{item.phone}</Link>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
     </div>
+    // </div>
   );
 }

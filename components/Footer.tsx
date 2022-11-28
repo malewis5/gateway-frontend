@@ -1,9 +1,9 @@
 const navigation = {
   main: [
     { name: 'About', href: '/about' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Jobs', href: '/jobs' },
-    { name: 'Press', href: '/contact' },
+    // { name: 'Blog', href: '/blog' },
+    { name: 'Careers', href: '/join-our-team' },
+    { name: 'Contact', href: '/contact' },
   ],
   social: [
     {

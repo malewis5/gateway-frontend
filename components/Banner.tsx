@@ -27,7 +27,7 @@ export const Banner = () => {
                 dispatch({ type: 'toggle' });
                 dispatch({ type: 'sign-up' });
               }}
-              className="flex items-center whitespace-nowrap justify-center rounded-md border border-blue-600 px-2 py-2 text-blue-600 font-medium text-blue-600 shadow-sm hover:bg-blue-600 hover:border-blue-700 hover:text-white"
+              className="flex items-center whitespace-nowrap justify-center rounded-md border border-primary px-2 py-2 text-primary font-medium text-primary shadow-sm hover:bg-primary hover:border-darkBlue hover:text-white"
             >
               Create an Account
             </button>
@@ -36,7 +36,7 @@ export const Banner = () => {
                 dispatch({ type: 'toggle' });
                 dispatch({ type: 'sign-in' });
               }}
-              className="flex items-center whitespace-nowrap justify-center rounded-md border border-transparent bg-blue-600 px-2 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700"
+              className="flex items-center whitespace-nowrap justify-center rounded-md border border-transparent bg-primary px-2 py-2 text-base font-medium text-white shadow-sm hover:bg-darkBlue"
             >
               Sign In
             </button>

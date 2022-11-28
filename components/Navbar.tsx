@@ -8,7 +8,7 @@ import Image from 'next/image';
 
 const navigation = [
   { name: 'Order', href: '/#menu' },
-  { name: 'Catering', href: '/catering' },
+  // { name: 'Catering', href: '/catering' },
   { name: 'About Us', href: '/about' },
   { name: 'Contact', href: '/contact' },
 ];
@@ -54,7 +54,7 @@ export default function Navbar() {
               <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
                 {session ? (
                   <div
-                    className="h-[40px] w-[40px] rounded-full group flex justify-center items-center text-lg border border-blue-600 cursor-pointer"
+                    className="h-[40px] w-[40px] rounded-full group flex justify-center items-center text-lg border border-primary cursor-pointer"
                     onClick={() => dispatch({ type: 'toggle' })}
                   >
                     <svg
@@ -62,7 +62,7 @@ export default function Navbar() {
                       fill="none"
                       viewBox="0 0 24 24"
                       strokeWidth={1.5}
-                      className="w-6 h-6 stroke-blue-600 group-hover:fill-blue-600"
+                      className="w-6 h-6 stroke-primary group-hover:fill-primary"
                     >
                       <path
                         strokeLinecap="round"
@@ -87,7 +87,7 @@ export default function Navbar() {
                         dispatch({ type: 'toggle' });
                         dispatch({ type: 'sign-up' });
                       }}
-                      className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700"
+                      className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-primary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-darkBlue"
                     >
                       Sign up
                     </button>
@@ -156,7 +156,7 @@ export default function Navbar() {
                             dispatch({ type: 'sign-up' });
                             dispatch({ type: 'toggle' });
                           }}
-                          className="flex w-full items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700"
+                          className="flex w-full items-center justify-center rounded-md border border-transparent bg-primary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-darkBlue"
                         >
                           Sign up
                         </button>

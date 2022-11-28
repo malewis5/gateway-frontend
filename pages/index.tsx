@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <main>
         <Hero />
-        {!session && <Banner />}
+        {/* {!session && <Banner />} */}
         <div className="p-10" id={'menu'}>
           <Menu />
         </div>

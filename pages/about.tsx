@@ -101,7 +101,7 @@ export default function About() {
                       </div>
                       <div className="space-y-1 text-lg font-medium leading-6">
                         <h3>{person.name}</h3>
-                        <p className="text-blue-700">{person.role}</p>
+                        <p className="text-darkBlue">{person.role}</p>
                       </div>
                     </div>
                   </li>

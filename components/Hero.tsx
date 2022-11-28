@@ -17,7 +17,7 @@ export default function Hero() {
         <span className="block text-white mb-[20px]">Gateway Subs</span>
       </h1>
       <Link href="/#menu">
-        <button className="flex w-[200px] items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700">
+        <button className="flex w-[200px] items-center justify-center rounded-md border border-transparent bg-primary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-darkBlue">
           Order Now
         </button>
       </Link>

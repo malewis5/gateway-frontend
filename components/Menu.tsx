@@ -64,8 +64,8 @@ export default function Menu() {
                 className="group-hover:scale-110"
               />
               <div className="w-full text-center">
-                <h3 className="text-2xl">{item.name}</h3>
-                <div className="group-hover:opacity-100 opacity-0 flex items-center justify-center gap-1">
+                <h3 className="text-3xl font-semibold">{item.name}</h3>
+                <div className="group-hover:opacity-100 opacity-0 flex items-center justify-center gap-1 text-red-300">
                   <h2>Order</h2>
                   <svg
                     className="w-6 h-6"
