@@ -1,29 +1,24 @@
 import { PhoneIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
-import { Form, Formik, useFormik } from 'formik';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { ContactForm } from '../components/common/ContactForm';
-import { Input } from '../components/common/Input';
-
-const submitHubspotForm = () => {
-  const endpoint =
-    'https://api.hsforms.com/submissions/v3/integration/secure/submit/:portalId/:formGuid';
-};
 
 const locations = [
   {
     name: 'South Pasadena',
     address: '2525 Pasadena Ave S, South Pasadena, FL 33707',
     phone: '+1 (561) 376 4083',
-    googleLink: 'https://goo.gl/maps/WajXdJgdtxySRoTi7',
+    googleLink:
+      'https://www.google.com/maps/place/Gateway+Subs/@27.7510114,-82.743154,904m/data=!3m1!1e3!4m5!3m4!1s0x88c2fdd39a8d655d:0x8af1b383cf950f33!8m2!3d27.7511964!4d-82.7426579',
     appleLink:
-      'https://maps.apple.com/?address=2525%20Pasadena%20Ave%20S,%20Unit%20O,%20South%20Pasadena,%20FL%20%2033707,%20United%20States&ll=27.751061,-82.743194&q=2525%20Pasadena%20Ave%20S,%20Unit%20O',
+      'https://maps.apple.com/?address=2525%20Pasadena%20Ave%20S,%20Unit%200,%20South%20Pasadena,%20FL%20%2033707,%20United%20States&auid=8181165096293580891&ll=27.751061,-82.743194&lsp=9902&q=Gateway%20Subs',
   },
   {
     name: 'St. Petersburg',
     address: '3112 3rd Ave N, St. Petersburg, FL 33713',
     phone: '+1 (561) 376 4083',
-    googleLink: 'https://goo.gl/maps/dv9YunypdXMWzsy47',
+    googleLink:
+      'https://www.google.com/maps/place/Gateway+Subs/@27.7743968,-82.6780589,17z/data=!4m12!1m6!3m5!1s0x88c2e3696a79f0d3:0x2741652ae03db09a!2sGateway+Subs!8m2!3d27.7743968!4d-82.6758702!3m4!1s0x88c2e3696a79f0d3:0x2741652ae03db09a!8m2!3d27.7743968!4d-82.6758702',
     appleLink:
       'https://maps.apple.com/?address=3112%20Third%20Ave%20N,%20Saint%20Petersburg,%20FL%2033713,%20United%20States&auid=12579609265094006543&ll=27.774359,-82.675831&lsp=9902&q=Gateway%20Subs',
   },
@@ -89,7 +84,7 @@ export default function Example() {
                     className="h-6 w-6 flex-shrink-0 text-gray-400"
                     aria-hidden="true"
                   />
-                  <span className="ml-3">support@example.com</span>
+                  <span className="ml-3">gatewaysubs@gmail.com</span>
                 </dd>
               </div>
             </dl>
