@@ -12,6 +12,7 @@ export default async function handler(
   const config = {
     headers: {
       'Content-Type': 'application/json',
+      'Accept-Encoding': 'gzip,deflate,compress',
     },
   };
 
