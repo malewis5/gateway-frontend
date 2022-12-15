@@ -28,10 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
           {/* Custom Layout */}
           <DefaultSeo {...SEO} />
           {/* Hubspot Tracking Script */}
-          <Script
-            src="//js.hs-scripts.com/23586061.js"
-            strategy="beforeInteractive"
-          />
+          <Script src="//js.hs-scripts.com/23586061.js" />
           {router.asPath.includes('/reset-password') ? (
             <>
               <Component {...pageProps} />
