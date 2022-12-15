@@ -10,6 +10,7 @@ import { UserContextProvider } from '../context/UserContext';
 import { DefaultSeo } from 'next-seo';
 import SEO from '../next-seo.config';
 import { useRouter } from 'next/router';
+import Script from 'next/script';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [supabaseClient] = useState(() => createBrowserSupabaseClient());
@@ -26,6 +27,11 @@ export default function App({ Component, pageProps }: AppProps) {
         <LoginModalProvider>
           {/* Custom Layout */}
           <DefaultSeo {...SEO} />
+          {/* Hubspot Tracking Script */}
+          <Script
+            src="//js.hs-scripts.com/23586061.js"
+            strategy="beforeInteractive"
+          />
           {router.asPath.includes('/reset-password') ? (
             <>
               <Component {...pageProps} />

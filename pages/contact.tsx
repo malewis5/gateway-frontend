@@ -1,7 +1,14 @@
 import { PhoneIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
+import { Form, Formik, useFormik } from 'formik';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { ContactForm } from '../components/common/ContactForm';
 import { Input } from '../components/common/Input';
+
+const submitHubspotForm = () => {
+  const endpoint =
+    'https://api.hsforms.com/submissions/v3/integration/secure/submit/:portalId/:formGuid';
+};
 
 const locations = [
   {
@@ -38,6 +45,7 @@ export default function Example() {
     )
       setIos(true);
   }
+
   useEffect(() => {
     iOS();
   });
@@ -87,127 +95,9 @@ export default function Example() {
             </dl>
           </div>
         </div>
-        <div className="bg-white px-4 sm:px-6 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
-          <div className="mx-auto max-w-lg lg:max-w-none">
-            <form action="#" method="POST" className="grid grid-cols-1 gap-y-6">
-              <Input
-                htmlFor="full-name"
-                type="text"
-                name="full-name"
-                id="full-name"
-                autoComplete="name"
-                placeholder="Full name"
-              />
-              <Input
-                htmlFor="email"
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                placeholder="Email"
-              />
-              <Input
-                htmlFor="phone"
-                type="text"
-                name="phone"
-                id="phone"
-                autoComplete="tel"
-                placeholder="Phone"
-              />
-              <div>
-                <label htmlFor="message" className="sr-only">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                  placeholder="Message"
-                  defaultValue={''}
-                />
-              </div>
-              <div>
-                <button
-                  type="submit"
-                  className="inline-flex justify-center rounded-md border border-transparent bg-primary py-3 px-6 text-base font-medium text-white shadow-sm hover:bg-darkBlue focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                >
-                  Submit
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
+        <ContactForm />
       </div>
       <div className="mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:px-8">
-        {/* <div className="divide-y-2 divide-gray-200"> */}
-        {/* <div className="lg:grid lg:grid-cols-3 lg:gap-8">
-            <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl sm:tracking-tight">
-              Customer Support
-            </h2>
-            <div className="mt-8 grid grid-cols-1 gap-12 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-12 lg:col-span-2 lg:mt-0">
-              <div>
-                <h3 className="text-lg font-medium leading-6 text-gray-900">
-                  Collaborate
-                </h3>
-                <dl className="mt-2 text-base text-gray-500">
-                  <div>
-                    <dt className="sr-only">Email</dt>
-                    <dd>support@example.com</dd>
-                  </div>
-                  <div className="mt-1">
-                    <dt className="sr-only">Phone number</dt>
-                    <dd>+1 (555) 123-4567</dd>
-                  </div>
-                </dl>
-              </div>
-              <div>
-                <h3 className="text-lg font-medium leading-6 text-gray-900">
-                  Press
-                </h3>
-                <dl className="mt-2 text-base text-gray-500">
-                  <div>
-                    <dt className="sr-only">Email</dt>
-                    <dd>support@example.com</dd>
-                  </div>
-                  <div className="mt-1">
-                    <dt className="sr-only">Phone number</dt>
-                    <dd>+1 (555) 123-4567</dd>
-                  </div>
-                </dl>
-              </div>
-              <div>
-                <h3 className="text-lg font-medium leading-6 text-gray-900">
-                  Join our team
-                </h3>
-                <dl className="mt-2 text-base text-gray-500">
-                  <div>
-                    <dt className="sr-only">Email</dt>
-                    <dd>support@example.com</dd>
-                  </div>
-                  <div className="mt-1">
-                    <dt className="sr-only">Phone number</dt>
-                    <dd>+1 (555) 123-4567</dd>
-                  </div>
-                </dl>
-              </div>
-              <div>
-                <h3 className="text-lg font-medium leading-6 text-gray-900">
-                  Say hello
-                </h3>
-                <dl className="mt-2 text-base text-gray-500">
-                  <div>
-                    <dt className="sr-only">Email</dt>
-                    <dd>support@example.com</dd>
-                  </div>
-                  <div className="mt-1">
-                    <dt className="sr-only">Phone number</dt>
-                    <dd>+1 (555) 123-4567</dd>
-                  </div>
-                </dl>
-              </div>
-            </div>
-          </div> */}
         <div className="lg:grid lg:grid-cols-3 lg:gap-8">
           <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl sm:tracking-tight">
             Locations
