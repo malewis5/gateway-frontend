@@ -53,6 +53,6 @@ export default async function handler(
     );
     res.status(200).json({ response: hubspotResponse.data });
   } catch (e) {
-    res.status(500).send(e);
+    res.status(500).send('Error submitting Hubspot form);
   }
 }
